@@ -85,3 +85,7 @@ notícias relacionadas à intolerância religiosa em todo o mundo.
 
 *Selecione uma página no menu lateral para começar.*
 """)
+
+
+# python -m uvicorn backend.api:app --host 0.0.0.0 --port 8000
+# streamlit run dashboard/app.py
