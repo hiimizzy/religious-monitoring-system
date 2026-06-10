@@ -2,18 +2,6 @@
 
 Sistema completo de monitoramento de notícias e futuramente memes relacionados à intolerância religiosa, utilizando Inteligência Artificial Explicável (XAI).
 
-## 📋 Características
-
-- **Monitoramento Automático**: Coleta de notícias de múltiplas fontes RSS
-- **Classificação IA**: Modelo de Machine Learning para detecção de intolerância
-- **IA Explicável**: Explicações LIME para decisões do modelo
-- **Dashboard Interativo**: Visualizações ricas com Streamlit
-- **Mapas Geográficos**: Distribuição global dos casos
-- **Sistema de Alertas**: Notificações para casos de alta probabilidade
-- **API REST**: Backend completo com FastAPI
-- **Arquitetura Modular**: Código pronto para produção
-
-
 ## Instalação Rápida
 
 ### Usando Docker (Recomendado)
