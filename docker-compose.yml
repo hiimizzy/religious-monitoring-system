@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: religious_monitoring_api
+    command: uvicorn backend.api:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - DATABASE_PATH=data/monitoring.db
+      - MODEL_PATH=models/text_model.pkl
+    restart: unless-stopped
+    networks:
+      - monitoring_network
+
+  dashboard:
+    build: .
+    container_name: religious_monitoring_dashboard
+    command: streamlit run dashboard/app.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+    environment:
+      - API_URL=http://backend:8000
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - monitoring_network
+
+  scheduler:
+    build: .
+    container_name: religious_monitoring_scheduler
+    command: python -m backend.scheduler
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - monitoring_network
+
+networks:
+  monitoring_network:
+    driver: bridge
+
+volumes:
+  data:
+    driver: local
+  models:
+    driver: local
+  logs:
+    driver: local
