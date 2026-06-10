@@ -13,16 +13,6 @@ Sistema completo de monitoramento de notícias e futuramente memes relacionados 
 - **API REST**: Backend completo com FastAPI
 - **Arquitetura Modular**: Código pronto para produção
 
-## Arquitetura
-
-religious_monitoring/
-├── backend/ # API e lógica de negócio
-├── dashboard/ # Interface Streamlit
-├── models/ # Modelos de ML
-├── data/ # Banco de dados
-
-
-
 
 ## Instalação Rápida
 
